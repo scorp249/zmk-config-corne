@@ -125,8 +125,8 @@
 // │     LEFT CTRL │               │               │               │               │               │     │           LFT │           DWN │            UP │           RGT │               │               │
      &kp LCTRL       &trans          &trans          &trans          &trans          &trans                &kp LEFT        &kp DOWN        &kp UP          &kp RIGHT       &trans          &trans
 // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤     ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-// │     LEFT SHFT │               │               │               │               │               │     │               │               │               │               │               │               │
-     &kp LSHFT       &trans          &trans          &trans          &trans          &trans                &trans          &trans          &trans          &trans          &trans          &trans
+// │     LEFT SHFT │               │               │               │               │               │     │               │     PAGE DOWN │       PAGE UP │               │               │               │
+     &kp LSHFT       &trans          &trans          &trans          &trans          &trans                &trans          &kp PG_DN       &kp PG_UP       &trans          &trans          &trans
 // └───────────────┴───────────────┴───────────────┼───────────────┼───────────────┼───────────────┤     ├───────────────┼───────────────┼───────────────┼───────────────┴───────────────┴───────────────┘
 //                                                 │  LEFT COMMAND │               │         SPACE │     │         ENTER │               │     RIGHT ALT │
                                                      &kp LCMD        &trans          &kp SPACE             &kp RET         &trans          &kp RALT
