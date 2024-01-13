@@ -158,11 +158,11 @@
 // │           TAB │               │               │               │               │               │     │               │               │               │               │               │          BKSP │
      &kp TAB         &trans          &trans          &trans          &trans          &trans                &trans          &trans          &trans          &trans          &trans          &kp BSPC
 // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤     ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-// │         BTCLR │           BT1 │           BT2 │           BT3 │           BT4 │           BT5 │     │               │               │               │               │               │               │
-     &bt BT_CLR      &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2    &bt BT_SEL 3    &bt BT_SEL 4          &trans          &trans          &trans          &trans          &trans          &trans
+// │         BTCLR │           BT1 │           BT2 │           BT3 │           BT4 │           BT5 │     │               │      PREVIOUS │  PLAY / PAUSE │          NEXT │               │               │
+     &bt BT_CLR      &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2    &bt BT_SEL 3    &bt BT_SEL 4          &trans          &kp C_PREV      &kp C_PP        &kp C_NEXT      &trans          &trans
 // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤     ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-// │     LEFT SHFT │               │               │               │               │               │     │               │               │               │               │               │               │
-     &kp LSHFT       &trans          &trans          &trans          &trans          &trans                &trans          &trans          &trans          &trans          &trans          &trans
+// │     LEFT SHFT │               │               │               │               │               │     │               │   VOLUME DOWN │          MUTE │     VOLUME UP │               │               │
+     &kp LSHFT       &trans          &trans          &trans          &trans          &trans                &trans          &kp C_VOL_DN    &kp K_MUTE      &kp C_VOL_UP    &trans          &trans
 // └───────────────┴───────────────┴───────────────┼───────────────┼───────────────┼───────────────┤     ├───────────────┼───────────────┼───────────────┼───────────────┴───────────────┴───────────────┘
 //                                                 │  LEFT COMMAND │               │         SPACE │     │         ENTER │               │     RIGHT ALT │
                                                      &kp LCMD        &trans          &kp SPACE             &kp RET         &trans          &kp RALT
