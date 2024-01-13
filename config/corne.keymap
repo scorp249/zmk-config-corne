@@ -155,8 +155,8 @@
     adjust_layer {
       bindings = <
 // ┌───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────┐     ┌───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────┐
-// │           TAB │               │               │               │               │               │     │               │               │               │               │               │          BKSP │
-     &kp TAB         &trans          &trans          &trans          &trans          &trans                &trans          &trans          &trans          &trans          &trans          &kp BSPC
+// │           TAB │               │               │               │               │               │     │       CAPTURE │               │               │               │               │          BKSP │
+     &kp TAB         &trans          &trans          &trans          &trans          &trans                &kp LG(LS(N4))  &trans          &trans          &trans          &trans          &kp BSPC
 // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤     ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
 // │         BTCLR │           BT1 │           BT2 │           BT3 │           BT4 │           BT5 │     │               │      PREVIOUS │  PLAY / PAUSE │          NEXT │               │               │
      &bt BT_CLR      &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2    &bt BT_SEL 3    &bt BT_SEL 4          &trans          &kp C_PREV      &kp C_PP        &kp C_NEXT      &trans          &trans
