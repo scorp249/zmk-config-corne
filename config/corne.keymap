@@ -9,11 +9,12 @@
 #include <dt-bindings/zmk/bt.h>
 #include "keys_ru.h"
 
-#define DEFAULT 0
-#define LOWER   1
-#define RAISE   2
-#define ADJUST  3
-#define RUSSIAN 4
+#define DEFAULT    0
+#define LOWER      1
+#define RAISE      2
+#define ADJUST     3
+#define RUSSIAN    4
+#define COLEMAK_DH 5
 
 &sk {
   quick-release;
@@ -101,6 +102,20 @@
       key-positions = <0 11>;
       bindings = <&tog RUSSIAN>;
     };
+    combo_colemak_dh_layer {
+// ┌───┬───┬───┬───┬───┬───┐  ┌───┬───┬───┬───┬───┬───┐
+// │   │   │   │   │   │   │  │   │   │   │   │   │   │
+// ├───┼───┼───┼───┼───┼───┤  ├───┼───┼───┼───┼───┼───┤
+// │ █ │   │   │   │   │   │  │   │   │   │   │   │ █ │
+// ├───┼───┼───┼───┼───┼───┤  ├───┼───┼───┼───┼───┼───┤
+// │   │   │   │   │   │   │  │   │   │   │   │   │   │
+// └───┴───┴───┼───┼───┼───┤  ├───┼───┼───┼───┴───┴───┘
+//             │   │   │   │  │   │   │   │
+//             └───┴───┴───┘  └───┴───┴───┘
+      timeout-ms = <50>;
+      key-positions = <12 23>;
+      bindings = <&tog COLEMAK_DH>;
+    };
   };
 
   conditional_layers {
@@ -160,7 +175,6 @@
     };
 
     lower_layer {
-      bindings = <
 // ┌───────┬───────┬───────┬───────┬───────┬───────┐     ┌───────┬───────┬───────┬───────┬───────┬───────┐
 // │   TAB │     1 │     2 │     3 │     4 │     5 │     │     6 │     7 │     8 │     9 │     0 │  BKSP │
 // ├───────┼───────┼───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┼───────┼───────┤
@@ -170,6 +184,7 @@
 // └───────┴───────┴───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┴───────┴───────┘
 //                         │  LCMD │       │ SPACE │     │ ENTER │       │  RALT │
 //                         └───────┴───────┴───────┘     └───────┴───────┴───────┘
+      bindings = <
      &kp TAB    &kp N1  &kp N2  &kp N3    &kp N4  &kp N5         &kp N6    &kp N7     &kp N8     &kp N9     &kp N0  &kp BSPC
      &kp LCTRL  &trans  &trans  &trans    &trans  &trans         &kp LEFT  &kp DOWN   &kp UP     &kp RIGHT  &trans  &trans
      &kp LSHFT  &trans  &trans  &trans    &trans  &trans         &trans    &kp PG_DN  &kp PG_UP  &trans     &trans  &trans
@@ -178,7 +193,6 @@
     };
 
     raise_layer {
-      bindings = <
 // ┌───────┬───────┬───────┬───────┬───────┬───────┐     ┌───────┬───────┬───────┬───────┬───────┬───────┐
 // │   TAB │     ! │     @ │     # │     $ │     % │     │     ^ │     & │     * │     ( │     ) │  BKSP │
 // ├───────┼───────┼───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┼───────┼───────┤
@@ -188,6 +202,7 @@
 // └───────┴───────┴───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┴───────┴───────┘
 //                         │  LCMD │       │ SPACE │     │ ENTER │       │  RALT │
 //                         └───────┴───────┴───────┘     └───────┴───────┴───────┘
+      bindings = <
      &kp  TAB   &kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT      &kp CARET  &kp AMPS   &kp KP_MULTIPLY  &kp LPAR  &kp RPAR  &kp BSPC
      &kp LCTRL  &trans    &trans  &trans    &trans    &trans         &kp MINUS  &kp EQUAL  &kp LBKT         &kp RBKT  &kp BSLH  &kp GRAVE
      &kp LSHFT  &trans    &trans  &trans    &trans    &trans         &kp UNDER  &kp PLUS   &kp LBRC         &kp RBRC  &kp PIPE  &kp TILDE
@@ -196,7 +211,6 @@
     };
 
     adjust_layer {
-      bindings = <
 // ┌───────┬───────┬───────┬───────┬───────┬───────┐     ┌───────┬───────┬───────┬───────┬───────┬───────┐
 // │   TAB │       │       │       │       │       │     │ CPTRE │       │       │       │       │  BKSP │
 // ├───────┼───────┼───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┼───────┼───────┤
@@ -206,6 +220,7 @@
 // └───────┴───────┴───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┴───────┴───────┘
 //                         │  LCMD │       │ SPACE │     │ ENTER │       │  RALT │
 //                         └───────┴───────┴───────┘     └───────┴───────┴───────┘
+      bindings = <
      &kp TAB     &trans        &trans        &trans        &trans        &trans            &kp LG(LS(N4))  &trans        &trans      &trans        &trans  &kp BSPC
      &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4      &trans          &kp C_PREV    &kp C_PP    &kp C_NEXT    &trans  &trans
      &kp LSHFT   &trans        &trans        &trans        &trans        &trans            &trans          &kp C_VOL_DN  &kp K_MUTE  &kp C_VOL_UP  &trans  &trans
@@ -228,6 +243,24 @@
      &kp RU_CH   &kp RU_Z  &kp RU_V  &kp RU_N   &kp RU_T  &kp RU_D      &kp RU_I       &kp RU_A   &kp RU_O   &kp RU_E   &kp RU_S   &sk RSHFT
      &kp RU_ZH   &kp RU_X  &kp RU_P  &kp RU_R   &kp RU_M  &kp RU_G      &kp RU_MAC_YO  &kp RU_MZ  &kp RU_U   &kp RU_YU  &kp RU_SH  &td_md_ru
                                      &td_eq_ru  &kp DEL   &kp SPACE     &kp RET        &kp BSPC   &td_cs_ru
+      >;
+    };
+
+    colemak_dh_layer {
+// ┌───────┬───────┬───────┬───────┬───────┬───────┐     ┌───────┬───────┬───────┬───────┬───────┬───────┐
+// │   TAB │     Q │     W │     F │     P │     B │     │     J │     L │     U │     Y │     ; │  BKSP │
+// ├───────┼───────┼───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┼───────┼───────┤
+// │ LCTRL │     A │     R │     S │     T │     G │     │     M │     N │     E │     I │     O │     ' │
+// ├───────┼───────┼───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┼───────┼───────┤
+// │ LSHFT │     Z │     X │     C │     D │     V │     │     K │     H │     , │     . │     / │   ESC │
+// └───────┴───────┴───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┴───────┴───────┘
+//                         │  LCMD │ LOWER │ SPACE │     │ ENTER │ RAISE │  LALT │
+//                         └───────┴───────┴───────┘     └───────┴───────┴───────┘
+      bindings = <
+     &kp TAB    &kp Q  &kp W  &kp F     &kp P      &kp B          &kp J      &kp L     &kp U      &kp Y    &kp SEMI   &kp BSPC
+     &kp LCTRL  &kp A  &kp R  &kp S     &kp T      &kp G          &kp M      &kp N     &kp E      &kp I    &kp O      &kp SQT
+     &sk LSHFT  &kp Z  &kp X  &kp C     &kp D      &kp V          &kp K      &kp H     &kp COMMA  &kp DOT  &kp FSLH   &kp ESC
+                              &kp LCMD  &mo LOWER  &kp SPACE      &kp RET  &mo RAISE  &kp LALT
       >;
     };
   };
