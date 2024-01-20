@@ -116,13 +116,13 @@
       compatible = "zmk,behavior-tap-dance";
       #binding-cells = <0>;
       tapping-term-ms = <200>;
-      bindings = <&kp RU_DOT>, <&kp RU_COMMA>;
+      bindings = <&kp RU_MAC_DOT>, <&kp RU_MAC_COMMA>;
     };
     td_cs_ru: tap_dance_ru_colon_semicolon {
       compatible = "zmk,behavior-tap-dance";
       #binding-cells = <0>;
       tapping-term-ms = <200>;
-      bindings = <&kp RU_COLON>, <&kp RU_SEMICOLON>;
+      bindings = <&kp RU_MAC_COLON>, <&kp RU_MAC_SEMICOLON>;
     };
     td_eq_ru: tap_dance_ru_exclamation_question {
       compatible = "zmk,behavior-tap-dance";
@@ -218,10 +218,10 @@
 //             │! ?│DEL│SPC│     │ENT│BSP│: ;│
 //             └───┴───┴───┘     └───┴───┴───┘
       bindings = <
-     &kp RU_SHH  &kp RU_C  &kp RU_K  &kp RU_L   &kp RU_B  &kp RU_J      &kp RU_TZ  &kp RU_Y   &kp RU_YA  &kp RU_EE  &kp RU_F   &td_dc_ru
-     &kp RU_CH   &kp RU_Z  &kp RU_V  &kp RU_N   &kp RU_T  &kp RU_D      &kp RU_I   &kp RU_A   &kp RU_O   &kp RU_E   &kp RU_S   &sk RSHFT
-     &kp RU_ZH   &kp RU_X  &kp RU_P  &kp RU_R   &kp RU_M  &kp RU_G      &kp RU_YO  &kp RU_MZ  &kp RU_U   &kp RU_YU  &kp RU_SH  &kp RU_DQT
-                                     &td_eq_ru  &kp DEL   &kp SPACE     &kp RET    &kp BSPC   &td_cs_ru
+     &kp RU_SHH  &kp RU_C  &kp RU_K  &kp RU_L   &kp RU_B  &kp RU_J      &kp RU_TZ      &kp RU_Y   &kp RU_YA  &kp RU_EE  &kp RU_F   &td_dc_ru
+     &kp RU_CH   &kp RU_Z  &kp RU_V  &kp RU_N   &kp RU_T  &kp RU_D      &kp RU_I       &kp RU_A   &kp RU_O   &kp RU_E   &kp RU_S   &sk RSHFT
+     &kp RU_ZH   &kp RU_X  &kp RU_P  &kp RU_R   &kp RU_M  &kp RU_G      &kp RU_MAC_YO  &kp RU_MZ  &kp RU_U   &kp RU_YU  &kp RU_SH  &kp RU_DQT
+                                     &td_eq_ru  &kp DEL   &kp SPACE     &kp RET        &kp BSPC   &td_cs_ru
       >;
     };
   };
