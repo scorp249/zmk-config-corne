@@ -112,11 +112,23 @@
   };
 
   behaviors {
-    td_dc: tap_dance_dot_comma {
+    td_dc_ru: tap_dance_ru_dot_comma {
       compatible = "zmk,behavior-tap-dance";
       #binding-cells = <0>;
       tapping-term-ms = <200>;
-      bindings = <&kp DOT>, <&kp COMMA>;
+      bindings = <&kp RU_DOT>, <&kp RU_COMMA>;
+    };
+    td_cs_ru: tap_dance_ru_colon_semicolon {
+      compatible = "zmk,behavior-tap-dance";
+      #binding-cells = <0>;
+      tapping-term-ms = <200>;
+      bindings = <&kp RU_COLON>, <&kp RU_SEMICOLON>;
+    };
+    td_eq_ru: tap_dance_ru_exclamation_question {
+      compatible = "zmk,behavior-tap-dance";
+      #binding-cells = <0>;
+      tapping-term-ms = <200>;
+      bindings = <&kp RU_EXCL>, <&kp RU_QMARK>;
     };
   };
 
@@ -201,15 +213,15 @@
 // ├───┼───┼───┼───┼───┼───┤     ├───┼───┼───┼───┼───┼───┤
 // │ Ч │ З │ В │ Н │ Т │ Д │     │ И │ А │ О │ Е │ С │RSH│
 // ├───┼───┼───┼───┼───┼───┤     ├───┼───┼───┼───┼───┼───┤
-// │ Ж │ Х │ П │ Р │ М │ Г │     │ Ё │ Ь │ У │ Ю │ Ш │' "│
+// │ Ж │ Х │ П │ Р │ М │ Г │     │ Ё │ Ь │ У │ Ю │ Ш │ " │
 // └───┴───┴───┼───┼───┼───┤     ├───┼───┼───┼───┴───┴───┘
-//             │   │   │SPC│     │   │   │: ;│
+//             │! ?│DEL│SPC│     │ENT│BSP│: ;│
 //             └───┴───┴───┘     └───┴───┴───┘
       bindings = <
-     &kp RU_SHH  &kp RU_C  &kp RU_K  &kp RU_L  &kp RU_B  &kp RU_J      &kp RU_TZ  &kp RU_Y   &kp RU_YA  &kp RU_EE  &kp RU_F   &td_dc
-     &kp RU_CH   &kp RU_Z  &kp RU_V  &kp RU_N  &kp RU_T  &kp RU_D      &kp RU_I   &kp RU_A   &kp RU_O   &kp RU_E   &kp RU_S   &sk RSHFT
-     &kp RU_ZH   &kp RU_X  &kp RU_P  &kp RU_R  &kp RU_M  &kp RU_G      &kp RU_YO  &kp RU_MZ  &kp RU_U   &kp RU_YU  &kp RU_SH  &kp APOS
-                                     &none     &none     &kp SPACE     &none      &none      &kp SEMI
+     &kp RU_SHH  &kp RU_C  &kp RU_K  &kp RU_L   &kp RU_B  &kp RU_J      &kp RU_TZ  &kp RU_Y   &kp RU_YA  &kp RU_EE  &kp RU_F   &td_dc_ru
+     &kp RU_CH   &kp RU_Z  &kp RU_V  &kp RU_N   &kp RU_T  &kp RU_D      &kp RU_I   &kp RU_A   &kp RU_O   &kp RU_E   &kp RU_S   &sk RSHFT
+     &kp RU_ZH   &kp RU_X  &kp RU_P  &kp RU_R   &kp RU_M  &kp RU_G      &kp RU_YO  &kp RU_MZ  &kp RU_U   &kp RU_YU  &kp RU_SH  &kp RU_DQT
+                                     &td_eq_ru  &kp DEL   &kp SPACE     &kp RET    &kp BSP    &td_cs_ru
       >;
     };
   };
