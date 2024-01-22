@@ -10,11 +10,11 @@
 #include "keys_ru.h"
 
 #define DEFAULT    0
-#define LOWER      1
-#define RAISE      2
-#define ADJUST     3
-#define RUSSIAN    4
-#define COLEMAK_DH 5
+#define COLEMAK_DH 1
+#define RUSSIAN    2
+#define LOWER      3
+#define RAISE      4
+#define ADJUST     5
 
 &sk {
   quick-release;
@@ -185,6 +185,42 @@
       >;
     };
 
+    colemak_dh_layer {
+// ┌───────┬───────┬───────┬───────┬───────┬───────┐     ┌───────┬───────┬───────┬───────┬───────┬───────┐
+// │   TAB │     Q │     W │     F │     P │     B │     │     J │     L │     U │     Y │     ; │  BKSP │
+// ├───────┼───────┼───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┼───────┼───────┤
+// │ LCTRL │     A │     R │     S │     T │     G │     │     M │     N │     E │     I │     O │     ' │
+// ├───────┼───────┼───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┼───────┼───────┤
+// │ LSHFT │     Z │     X │     C │     D │     V │     │     K │     H │     , │     . │     / │   ESC │
+// └───────┴───────┴───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┴───────┴───────┘
+//                         │  LCMD │ LOWER │ SPACE │     │ ENTER │ RAISE │  LALT │
+//                         └───────┴───────┴───────┘     └───────┴───────┴───────┘
+      bindings = <
+     &kp TAB    &kp Q  &kp W  &kp F     &kp P      &kp B          &kp J      &kp L     &kp U      &kp Y    &kp SEMI   &kp BSPC
+     &kp LCTRL  &kp A  &kp R  &kp S     &kp T      &kp G          &kp M      &kp N     &kp E      &kp I    &kp O      &kp SQT
+     &sk LSHFT  &kp Z  &kp X  &kp C     &kp D      &kp V          &kp K      &kp H     &kp COMMA  &kp DOT  &kp FSLH   &kp ESC
+                              &kp LCMD  &mo LOWER  &kp SPACE      &kp RET  &mo RAISE  &kp LALT
+      >;
+    };
+
+    russian_layer {
+// ┌───┬───┬───┬───┬───┬───┐     ┌───┬───┬───┬───┬───┬───┐
+// │ Щ │ Ц │ К │ Л │ Б │ Й │     │ Ъ │ Ы │ Я │ Э │ Ф │. ,│
+// ├───┼───┼───┼───┼───┼───┤     ├───┼───┼───┼───┼───┼───┤
+// │ Ч │ З │ В │ Н │ Т │ Д │     │ И │ А │ О │ Е │ С │RSH│
+// ├───┼───┼───┼───┼───┼───┤     ├───┼───┼───┼───┼───┼───┤
+// │ Ж │ Х │ П │ Р │ М │ Г │     │ Ё │ Ь │ У │ Ю │ Ш │- "│
+// └───┴───┴───┼───┼───┼───┤     ├───┼───┼───┼───┴───┴───┘
+//             │! ?│DEL│SPC│     │ENT│BSP│: ;│
+//             └───┴───┴───┘     └───┴───┴───┘
+      bindings = <
+     &kp RU_SHH  &kp RU_C  &kp RU_K  &kp RU_L   &kp RU_B  &kp RU_J      &kp RU_TZ      &kp RU_Y   &kp RU_YA  &kp RU_EE  &kp RU_F   &td_dc_ru
+     &kp RU_CH   &kp RU_Z  &kp RU_V  &kp RU_N   &kp RU_T  &kp RU_D      &kp RU_I       &kp RU_A   &kp RU_O   &kp RU_E   &kp RU_S   &sk RSHFT
+     &kp RU_ZH   &kp RU_X  &kp RU_P  &kp RU_R   &kp RU_M  &kp RU_G      &kp RU_MAC_YO  &kp RU_MZ  &kp RU_U   &kp RU_YU  &kp RU_SH  &td_md_ru
+                                     &td_eq_ru  &kp DEL   &kp SPACE     &kp RET        &kp BSPC   &td_cs_ru
+      >;
+    };
+
     lower_layer {
 // ┌───────┬───────┬───────┬───────┬───────┬───────┐     ┌───────┬───────┬───────┬───────┬───────┬───────┐
 // │   TAB │     1 │     2 │     3 │     4 │     5 │     │     6 │     7 │     8 │     9 │     0 │  BKSP │
@@ -239,40 +275,5 @@
       >;
     };
 
-    russian_layer {
-// ┌───┬───┬───┬───┬───┬───┐     ┌───┬───┬───┬───┬───┬───┐
-// │ Щ │ Ц │ К │ Л │ Б │ Й │     │ Ъ │ Ы │ Я │ Э │ Ф │. ,│
-// ├───┼───┼───┼───┼───┼───┤     ├───┼───┼───┼───┼───┼───┤
-// │ Ч │ З │ В │ Н │ Т │ Д │     │ И │ А │ О │ Е │ С │RSH│
-// ├───┼───┼───┼───┼───┼───┤     ├───┼───┼───┼───┼───┼───┤
-// │ Ж │ Х │ П │ Р │ М │ Г │     │ Ё │ Ь │ У │ Ю │ Ш │- "│
-// └───┴───┴───┼───┼───┼───┤     ├───┼───┼───┼───┴───┴───┘
-//             │! ?│DEL│SPC│     │ENT│BSP│: ;│
-//             └───┴───┴───┘     └───┴───┴───┘
-      bindings = <
-     &kp RU_SHH  &kp RU_C  &kp RU_K  &kp RU_L   &kp RU_B  &kp RU_J      &kp RU_TZ      &kp RU_Y   &kp RU_YA  &kp RU_EE  &kp RU_F   &td_dc_ru
-     &kp RU_CH   &kp RU_Z  &kp RU_V  &kp RU_N   &kp RU_T  &kp RU_D      &kp RU_I       &kp RU_A   &kp RU_O   &kp RU_E   &kp RU_S   &sk RSHFT
-     &kp RU_ZH   &kp RU_X  &kp RU_P  &kp RU_R   &kp RU_M  &kp RU_G      &kp RU_MAC_YO  &kp RU_MZ  &kp RU_U   &kp RU_YU  &kp RU_SH  &td_md_ru
-                                     &td_eq_ru  &kp DEL   &kp SPACE     &kp RET        &kp BSPC   &td_cs_ru
-      >;
-    };
-
-    colemak_dh_layer {
-// ┌───────┬───────┬───────┬───────┬───────┬───────┐     ┌───────┬───────┬───────┬───────┬───────┬───────┐
-// │   TAB │     Q │     W │     F │     P │     B │     │     J │     L │     U │     Y │     ; │  BKSP │
-// ├───────┼───────┼───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┼───────┼───────┤
-// │ LCTRL │     A │     R │     S │     T │     G │     │     M │     N │     E │     I │     O │     ' │
-// ├───────┼───────┼───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┼───────┼───────┤
-// │ LSHFT │     Z │     X │     C │     D │     V │     │     K │     H │     , │     . │     / │   ESC │
-// └───────┴───────┴───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┴───────┴───────┘
-//                         │  LCMD │ LOWER │ SPACE │     │ ENTER │ RAISE │  LALT │
-//                         └───────┴───────┴───────┘     └───────┴───────┴───────┘
-      bindings = <
-     &kp TAB    &kp Q  &kp W  &kp F     &kp P      &kp B          &kp J      &kp L     &kp U      &kp Y    &kp SEMI   &kp BSPC
-     &kp LCTRL  &kp A  &kp R  &kp S     &kp T      &kp G          &kp M      &kp N     &kp E      &kp I    &kp O      &kp SQT
-     &sk LSHFT  &kp Z  &kp X  &kp C     &kp D      &kp V          &kp K      &kp H     &kp COMMA  &kp DOT  &kp FSLH   &kp ESC
-                              &kp LCMD  &mo LOWER  &kp SPACE      &kp RET  &mo RAISE  &kp LALT
-      >;
-    };
   };
 };
