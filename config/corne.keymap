@@ -11,10 +11,12 @@
 
 #define DEFAULT    0
 #define COLEMAK_DH 1
-#define RUSSIAN    2
-#define LOWER      3
-#define RAISE      4
-#define ADJUST     5
+#define ENGRAM     2
+#define ENG_SYM    3
+#define RUSSIAN    4
+#define LOWER      5
+#define RAISE      6
+#define ADJUST     7
 
 &sk {
   quick-release;
@@ -127,6 +129,20 @@
       key-positions = <12 23>;
       bindings = <&tog COLEMAK_DH>;
     };
+    combo_engram_layer {
+// ┌───┬───┬───┬───┬───┬───┐  ┌───┬───┬───┬───┬───┬───┐
+// │   │   │   │   │   │   │  │   │   │   │   │   │   │
+// ├───┼───┼───┼───┼───┼───┤  ├───┼───┼───┼───┼───┼───┤
+// │   │   │   │   │   │   │  │   │   │   │   │   │   │
+// ├───┼───┼───┼───┼───┼───┤  ├───┼───┼───┼───┼───┼───┤
+// │ █ │   │   │   │   │   │  │   │   │   │   │   │ █ │
+// └───┴───┴───┼───┼───┼───┤  ├───┼───┼───┼───┴───┴───┘
+//             │   │   │   │  │   │   │   │
+//             └───┴───┴───┘  └───┴───┴───┘
+      timeout-ms = <50>;
+      key-positions = <24 35>;
+      bindings = <&tog ENGRAM>;
+    };
   };
 
   conditional_layers {
@@ -138,6 +154,71 @@
   };
 
   behaviors {
+    hm: homerow_mods {
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      tapping-term-ms = <150>;
+      quick-tap-ms = <0>;
+      flavor = "tap-preferred";
+      bindings = <&kp>, <&kp>;
+    };
+// engram
+    mm_qt: quote_open_parenthesis {
+      compatible = "zmk,behavior-mod-morph";
+      #binding-cells = <0>;
+      bindings = <&kp APOS>, <&kp LPAR>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+    mm_dqt: double_quote_close_parenthesis {
+      compatible = "zmk,behavior-mod-morph";
+      #binding-cells = <0>;
+      bindings = <&kp DQT>, <&kp RPAR>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+    mm_comma: comma_semicolon {
+      compatible = "zmk,behavior-mod-morph";
+      #binding-cells = <0>;
+      bindings = <&kp COMMA>, <&kp SEMICOLON>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+    mm_dot: dot_colon {
+      compatible = "zmk,behavior-mod-morph";
+      #binding-cells = <0>;
+      bindings = <&kp DOT>, <&kp COLON>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+    mm_qmark: question_mark_exclamation {
+      compatible = "zmk,behavior-mod-morph";
+      #binding-cells = <0>;
+      bindings = <&kp QMARK>, <&kp EXCL>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+// russian mod morph
+    mm_dc_ru: ru_dot_comma {
+      compatible = "zmk,behavior-mod-morph";
+      #binding-cells = <0>;
+      bindings = <&kp RU_MAC_DOT>, <&kp RU_MAC_COMMA>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+    mm_cs_ru: ru_colon_semicolon {
+      compatible = "zmk,behavior-mod-morph";
+      #binding-cells = <0>;
+      bindings = <&kp RU_MAC_COLON>, <&kp RU_MAC_SEMICOLON>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+    mm_eq_ru: ru_exclamation_question {
+      compatible = "zmk,behavior-mod-morph";
+      #binding-cells = <0>;
+      bindings = <&kp RU_EXCL>, <&kp RU_MAC_QMARK>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+    mm_md_ru: ru_minus_double_quotes {
+      compatible = "zmk,behavior-mod-morph";
+      #binding-cells = <0>;
+      bindings = <&kp RU_MINUS>, <&kp RU_DQT>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+// russian tap dance
     td_dc_ru: tap_dance_ru_dot_comma {
       compatible = "zmk,behavior-tap-dance";
       #binding-cells = <0>;
@@ -203,21 +284,57 @@
       >;
     };
 
+    default_engram_layer {
+// ┌───────┬───────┬───────┬───────┬───────┬───────┐     ┌───────┬───────┬───────┬───────┬───────┬───────┐
+// │   ESC │     B │     Y │     O │     U │   ' ( │     │   " ) │     L │     D │     W │     V │     Z │
+// ├───────┼───────┼───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┼───────┼───────┤
+// │   TAB │  LC C │  LA I │  LG E │  LS A │   , ; │     │   . : │  RS H │  RG T │  RA S │  RC N │     Q │
+// ├───────┼───────┼───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┼───────┼───────┤
+// │   DEL │     G │     X │     J │     K │   - _ │     │   ? ! │     R │     M │     F │     P │  BSPC │
+// └───────┴───────┴───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┴───────┴───────┘
+//                         │   NAV │   SYM │   SPC │     │   ENT │   SYM │       │
+//                         └───────┴───────┴───────┘     └───────┴───────┴───────┘
+      bindings = <
+     &kp ESC  &kp B        &kp Y       &kp O       &kp U        &mm_qt         &mm_dqt    &kp L        &kp D       &kp W       &kp V        &kp Z
+     &kp TAB  &hm LCTRL C  &hm LALT I  &hm LCMD E  &hm LSHFT A  &mm_comma      &mm_dot    &hm RSHFT H  &hm RCMD T  &hm RALT S  &hm RCTRL N  &kp Q
+     &kp DEL  &kp G        &kp X       &kp J       &kp K        &kp MINUS      &mm_qmark  &kp R        &kp M       &kp F       &kp P        &kp BSPC
+                                       &mo LOWER   &mo ENG_SYM  &kp SPACE      &kp RET    &mo ENG_SYM  &none
+      >;
+    };
+
+    symbol_engram_layer {
+// ┌───────┬───────┬───────┬───────┬───────┬───────┐     ┌───────┬───────┬───────┬───────┬───────┬───────┐
+// │     [ │     1 │     2 │     3 │     4 │     5 │     │     6 │     7 │     8 │     9 │     0 │     ] │
+// ├───────┼───────┼───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┼───────┼───────┤
+// │     { │     | │     = │     ~ │     + │     < │     │     > │     ^ │     & │     % │     * │     } │
+// ├───────┼───────┼───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┼───────┼───────┤
+// │       │       │       │     # │     @ │     / │     │     \ │     ` │     $ │       │       │       │
+// └───────┴───────┴───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┴───────┴───────┘
+//                         │       │       │       │     │       │       │       │
+//                         └───────┴───────┴───────┘     └───────┴───────┴───────┘
+      bindings = <
+     &kp LBKT  &kp N1    &kp N2     &kp N3     &kp N4    &kp N5        &kp N6    &kp N7     &kp N8    &kp N9     &kp N0    &kp RBKT
+     &kp LBRC  &kp PIPE  &kp EQUAL  &kp TILDE  &kp PLUS  &kp LT        &kp GT    &kp CARET  &kp AMPS  &kp PRCNT  &kp STAR  &kp RBRC
+     &none     &none     &none      &kp HASH   &kp AT    &kp FSLH      &kp BSLH  &kp GRAVE  &kp DLLR  &none      &none     &none
+                                    &none      &none     &none         &none     &none      &none
+      >;
+    };
+
     russian_layer {
 // ┌───┬───┬───┬───┬───┬───┐     ┌───┬───┬───┬───┬───┬───┐
 // │ Щ │ Ц │ К │ Л │ Б │ Й │     │ Ъ │ Ы │ Я │ Э │ Ф │. ,│
 // ├───┼───┼───┼───┼───┼───┤     ├───┼───┼───┼───┼───┼───┤
-// │ Ч │ З │ В │ Н │ Т │ Д │     │ И │ А │ О │ Е │ С │RSH│
+// │ Ч │ З │ В │ Н │ Т │ Д │     │ И │ А │ О │ Е │ С │- "│
 // ├───┼───┼───┼───┼───┼───┤     ├───┼───┼───┼───┼───┼───┤
-// │ Ж │ Х │ П │ Р │ М │ Г │     │ Ё │ Ь │ У │ Ю │ Ш │- "│
+// │ Ж │ Х │ П │ Р │ М │ Г │     │ Ё │ Ь │ У │ Ю │ Ш │: ;│
 // └───┴───┴───┼───┼───┼───┤     ├───┼───┼───┼───┴───┴───┘
-//             │! ?│DEL│SPC│     │ENT│BSP│: ;│
+//             │LSH│DEL│SPC│     │ENT│BSP│! ?│
 //             └───┴───┴───┘     └───┴───┴───┘
       bindings = <
-     &kp RU_SHH  &kp RU_C  &kp RU_K  &kp RU_L   &kp RU_B  &kp RU_J      &kp RU_TZ      &kp RU_Y   &kp RU_YA  &kp RU_EE  &kp RU_F   &td_dc_ru
-     &kp RU_CH   &kp RU_Z  &kp RU_V  &kp RU_N   &kp RU_T  &kp RU_D      &kp RU_I       &kp RU_A   &kp RU_O   &kp RU_E   &kp RU_S   &sk RSHFT
-     &kp RU_ZH   &kp RU_X  &kp RU_P  &kp RU_R   &kp RU_M  &kp RU_G      &kp RU_MAC_YO  &kp RU_MZ  &kp RU_U   &kp RU_YU  &kp RU_SH  &td_md_ru
-                                     &td_eq_ru  &kp DEL   &kp SPACE     &kp RET        &kp BSPC   &td_cs_ru
+     &kp RU_SHH  &kp RU_C  &kp RU_K  &kp RU_L   &kp RU_B  &kp RU_J      &kp RU_TZ      &kp RU_Y   &kp RU_YA  &kp RU_EE  &kp RU_F   &mm_dc_ru
+     &kp RU_CH   &kp RU_Z  &kp RU_V  &kp RU_N   &kp RU_T  &kp RU_D      &kp RU_I       &kp RU_A   &kp RU_O   &kp RU_E   &kp RU_S   &mm_md_ru
+     &kp RU_ZH   &kp RU_X  &kp RU_P  &kp RU_R   &kp RU_M  &kp RU_G      &kp RU_MAC_YO  &kp RU_MZ  &kp RU_U   &kp RU_YU  &kp RU_SH  &mm_cs_ru
+                                     &sk LSHFT  &kp DEL   &kp SPACE     &kp RET        &kp BSPC   &mm_eq_ru
       >;
     };
 
