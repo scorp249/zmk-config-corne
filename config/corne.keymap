@@ -154,13 +154,27 @@
   };
 
   behaviors {
-    hm: homerow_mods {
+    hml: homerow_mods_left {
       compatible = "zmk,behavior-hold-tap";
       #binding-cells = <2>;
-      tapping-term-ms = <150>;
-      quick-tap-ms = <0>;
-      flavor = "tap-preferred";
+      tapping-term-ms = <280>;
+      quick-tap-ms = <175>;
+      require-prior-idle-ms = <150>;
+      flavor = "balanced";
       bindings = <&kp>, <&kp>;
+      hold-trigger-key-positions = <6 7 8 9 10 11 18 19 20 21 22 23 30 31 32 33 34 35 36 37 38 39 40 41>;
+      hold-trigger-on-release;
+    };
+    hmr: homerow_mods_right {
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      tapping-term-ms = <280>;
+      quick-tap-ms = <175>;
+      require-prior-idle-ms = <150>;
+      flavor = "balanced";
+      bindings = <&kp>, <&kp>;
+      hold-trigger-key-positions = <0 1 2 3 4 5 12 13 14 15 16 17 24 25 26 27 28 29 36 37 38 39 40 41>;
+      hold-trigger-on-release;
     };
 // engram
     mm_qt: quote_open_parenthesis {
@@ -295,10 +309,10 @@
 //                         │   NAV │   SYM │   SPC │     │   ENT │   SYM │       │
 //                         └───────┴───────┴───────┘     └───────┴───────┴───────┘
       bindings = <
-     &kp ESC  &kp B        &kp Y       &kp O       &kp U        &mm_qt         &mm_dqt    &kp L        &kp D       &kp W       &kp V        &kp Z
-     &kp TAB  &hm LCTRL C  &hm LALT I  &hm LCMD E  &hm LSHFT A  &mm_comma      &mm_dot    &hm RSHFT H  &hm RCMD T  &hm RALT S  &hm RCTRL N  &kp Q
-     &kp DEL  &kp G        &kp X       &kp J       &kp K        &kp MINUS      &mm_qmark  &kp R        &kp M       &kp F       &kp P        &kp BSPC
-                                       &mo LOWER   &mo ENG_SYM  &kp SPACE      &kp RET    &mo ENG_SYM  &none
+     &kp ESC  &kp B         &kp Y        &kp O        &kp U         &mm_qt         &mm_dqt    &kp L         &kp D        &kp W        &kp V         &kp Z
+     &kp TAB  &hml LCTRL C  &hml LALT I  &hml LCMD E  &hml LSHFT A  &mm_comma      &mm_dot    &hmr RSHFT H  &hmr RCMD T  &hmr RALT S  &hmr RCTRL N  &kp Q
+     &kp DEL  &kp G         &kp X        &kp J        &kp K         &kp MINUS      &mm_qmark  &kp R         &kp M        &kp F        &kp P         &kp BSPC
+                                         &mo LOWER    &mo ENG_SYM   &kp SPACE      &kp RET    &mo ENG_SYM   &none
       >;
     };
 
@@ -306,17 +320,17 @@
 // ┌───────┬───────┬───────┬───────┬───────┬───────┐     ┌───────┬───────┬───────┬───────┬───────┬───────┐
 // │     [ │     1 │     2 │     3 │     4 │     5 │     │     6 │     7 │     8 │     9 │     0 │     ] │
 // ├───────┼───────┼───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┼───────┼───────┤
-// │     { │     | │     = │     ~ │     + │     < │     │     > │     ^ │     & │     % │     * │     } │
+// │     { │  LC | │  LA = │  LG ~ │  LS + │     < │     │     > │  RS ^ │  RG & │  RA % │  RC * │     } │
 // ├───────┼───────┼───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┼───────┼───────┤
 // │       │       │       │     # │     @ │     / │     │     \ │     ` │     $ │       │       │       │
 // └───────┴───────┴───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┴───────┴───────┘
 //                         │       │       │       │     │       │       │       │
 //                         └───────┴───────┴───────┘     └───────┴───────┴───────┘
       bindings = <
-     &kp LBKT  &kp N1    &kp N2     &kp N3     &kp N4    &kp N5        &kp N6    &kp N7     &kp N8    &kp N9     &kp N0    &kp RBKT
-     &kp LBRC  &kp PIPE  &kp EQUAL  &kp TILDE  &kp PLUS  &kp LT        &kp GT    &kp CARET  &kp AMPS  &kp PRCNT  &kp STAR  &kp RBRC
-     &none     &none     &none      &kp HASH   &kp AT    &kp FSLH      &kp BSLH  &kp GRAVE  &kp DLLR  &none      &none     &none
-                                    &none      &none     &none         &none     &none      &none
+     &kp LBKT  &kp N1           &kp N2           &kp N3           &kp N4           &kp N5        &kp N6    &kp N7            &kp N8          &kp N9           &kp N0           &kp RBKT
+     &kp LBRC  &hml LCTRL PIPE  &hml LALT EQUAL  &hml LCMD TILDE  &hml LSHFT PLUS  &kp LT        &kp GT    &hmr RSHFT CARET  &hmr RCMD AMPS  &hmr RALT PRCNT  &hmr RCTRL STAR  &kp RBRC
+     &none     &none            &none            &kp HASH         &kp AT           &kp FSLH      &kp BSLH  &kp GRAVE         &kp DLLR        &none            &none            &none
+                                                 &none            &none            &none         &none     &none             &none
       >;
     };
 
@@ -334,7 +348,7 @@
      &kp RU_SHH  &kp RU_C  &kp RU_K  &kp RU_L   &kp RU_B  &kp RU_J      &kp RU_TZ      &kp RU_Y   &kp RU_YA  &kp RU_EE  &kp RU_F   &mm_dc_ru
      &kp RU_CH   &kp RU_Z  &kp RU_V  &kp RU_N   &kp RU_T  &kp RU_D      &kp RU_I       &kp RU_A   &kp RU_O   &kp RU_E   &kp RU_S   &mm_md_ru
      &kp RU_ZH   &kp RU_X  &kp RU_P  &kp RU_R   &kp RU_M  &kp RU_G      &kp RU_MAC_YO  &kp RU_MZ  &kp RU_U   &kp RU_YU  &kp RU_SH  &mm_cs_ru
-                                     &sk LSHFT  &kp DEL   &kp SPACE     &kp RET        &kp BSPC   &mm_eq_ru
+                                    &sk LSHFT  &kp DEL   &kp SPACE     &kp RET        &kp BSPC   &mm_eq_ru
       >;
     };
 
