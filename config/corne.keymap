@@ -10,13 +10,11 @@
 #include "keys_ru.h"
 
 #define DEFAULT    0
-#define COLEMAK_DH 1
-#define ENGRAM     2
-#define ENG_SYM    3
-#define RUSSIAN    4
-#define LOWER      5
-#define RAISE      6
-#define ADJUST     7
+#define ENG_SYM    1
+#define RUSSIAN    2
+#define LOWER      3
+#define RAISE      4
+#define ADJUST     5
 
 &sk {
   quick-release;
@@ -73,63 +71,7 @@
       key-positions = <17 18>;
       bindings = <&kp CAPSLOCK>;
     };
-    combo_vscode_back {
-// ┌───┬───┬───┬───┬───┬───┐  ┌───┬───┬───┬───┬───┬───┐
-// │   │   │   │   │ █ │ █ │  │   │   │   │   │   │   │
-// ├───┼───┼───┼───┼───┼───┤  ├───┼───┼───┼───┼───┼───┤
-// │   │   │   │   │   │   │  │   │   │   │   │   │   │
-// ├───┼───┼───┼───┼───┼───┤  ├───┼───┼───┼───┼───┼───┤
-// │   │   │   │   │   │   │  │   │   │   │   │   │   │
-// └───┴───┴───┼───┼───┼───┤  ├───┼───┼───┼───┴───┴───┘
-//             │   │   │   │  │   │   │   │
-//             └───┴───┴───┘  └───┴───┴───┘
-      timeout-ms = <50>;
-      key-positions = <4 5>;
-      bindings = <&kp LC(MINUS)>;
-    };
-    combo_vscode_forward {
-// ┌───┬───┬───┬───┬───┬───┐  ┌───┬───┬───┬───┬───┬───┐
-// │   │   │   │   │   │   │  │ █ │ █ │   │   │   │   │
-// ├───┼───┼───┼───┼───┼───┤  ├───┼───┼───┼───┼───┼───┤
-// │   │   │   │   │   │   │  │   │   │   │   │   │   │
-// ├───┼───┼───┼───┼───┼───┤  ├───┼───┼───┼───┼───┼───┤
-// │   │   │   │   │   │   │  │   │   │   │   │   │   │
-// └───┴───┴───┼───┼───┼───┤  ├───┼───┼───┼───┴───┴───┘
-//             │   │   │   │  │   │   │   │
-//             └───┴───┴───┘  └───┴───┴───┘
-      timeout-ms = <50>;
-      key-positions = <6 7>;
-      bindings = <&kp LC(LS(MINUS))>;
-    };
     combo_russian_layer {
-// ┌───┬───┬───┬───┬───┬───┐  ┌───┬───┬───┬───┬───┬───┐
-// │ █ │   │   │   │   │   │  │   │   │   │   │   │ █ │
-// ├───┼───┼───┼───┼───┼───┤  ├───┼───┼───┼───┼───┼───┤
-// │   │   │   │   │   │   │  │   │   │   │   │   │   │
-// ├───┼───┼───┼───┼───┼───┤  ├───┼───┼───┼───┼───┼───┤
-// │   │   │   │   │   │   │  │   │   │   │   │   │   │
-// └───┴───┴───┼───┼───┼───┤  ├───┼───┼───┼───┴───┴───┘
-//             │   │   │   │  │   │   │   │
-//             └───┴───┴───┘  └───┴───┴───┘
-      timeout-ms = <50>;
-      key-positions = <0 11>;
-      bindings = <&switch_to_russian>;
-    };
-    combo_colemak_dh_layer {
-// ┌───┬───┬───┬───┬───┬───┐  ┌───┬───┬───┬───┬───┬───┐
-// │   │   │   │   │   │   │  │   │   │   │   │   │   │
-// ├───┼───┼───┼───┼───┼───┤  ├───┼───┼───┼───┼───┼───┤
-// │ █ │   │   │   │   │   │  │   │   │   │   │   │ █ │
-// ├───┼───┼───┼───┼───┼───┤  ├───┼───┼───┼───┼───┼───┤
-// │   │   │   │   │   │   │  │   │   │   │   │   │   │
-// └───┴───┴───┼───┼───┼───┤  ├───┼───┼───┼───┴───┴───┘
-//             │   │   │   │  │   │   │   │
-//             └───┴───┴───┘  └───┴───┴───┘
-      timeout-ms = <50>;
-      key-positions = <12 23>;
-      bindings = <&tog COLEMAK_DH>;
-    };
-    combo_engram_layer {
 // ┌───┬───┬───┬───┬───┬───┐  ┌───┬───┬───┬───┬───┬───┐
 // │   │   │   │   │   │   │  │   │   │   │   │   │   │
 // ├───┼───┼───┼───┼───┼───┤  ├───┼───┼───┼───┼───┼───┤
@@ -141,7 +83,7 @@
 //             └───┴───┴───┘  └───┴───┴───┘
       timeout-ms = <50>;
       key-positions = <24 35>;
-      bindings = <&tog ENGRAM>;
+      bindings = <&switch_to_russian>;
     };
   };
 
@@ -232,71 +174,10 @@
       bindings = <&kp RU_MINUS>, <&kp RU_DQT>;
       mods = <(MOD_LSFT|MOD_RSFT)>;
     };
-// russian tap dance
-    td_dc_ru: tap_dance_ru_dot_comma {
-      compatible = "zmk,behavior-tap-dance";
-      #binding-cells = <0>;
-      tapping-term-ms = <200>;
-      bindings = <&kp RU_MAC_DOT>, <&kp RU_MAC_COMMA>;
-    };
-    td_cs_ru: tap_dance_ru_colon_semicolon {
-      compatible = "zmk,behavior-tap-dance";
-      #binding-cells = <0>;
-      tapping-term-ms = <200>;
-      bindings = <&kp RU_MAC_COLON>, <&kp RU_MAC_SEMICOLON>;
-    };
-    td_eq_ru: tap_dance_ru_exclamation_question {
-      compatible = "zmk,behavior-tap-dance";
-      #binding-cells = <0>;
-      tapping-term-ms = <200>;
-      bindings = <&kp RU_EXCL>, <&kp RU_MAC_QMARK>;
-    };
-    td_md_ru: tap_dance_ru_minus_double_quotes {
-      compatible = "zmk,behavior-tap-dance";
-      #binding-cells = <0>;
-      tapping-term-ms = <200>;
-      bindings = <&kp RU_MINUS>, <&kp RU_DQT>;
-    };
   };
 
   keymap {
     compatible = "zmk,keymap";
-
-    default_layer {
-// ┌───────┬───────┬───────┬───────┬───────┬───────┐     ┌───────┬───────┬───────┬───────┬───────┬───────┐
-// │   TAB │     Q │     W │     E │     R │     T │     │     Y │     U │     I │     O │     P │  BKSP │
-// ├───────┼───────┼───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┼───────┼───────┤
-// │ LCTRL │     A │     S │     D │     F │     G │     │     H │     J │     K │     L │     ; │     ' │
-// ├───────┼───────┼───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┼───────┼───────┤
-// │ LSHFT │     Z │     X │     C │     V │     B │     │     N │     M │     , │     . │     / │   ESC │
-// └───────┴───────┴───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┴───────┴───────┘
-//                         │  LCMD │ LOWER │ SPACE │     │ ENTER │ RAISE │  LALT │
-//                         └───────┴───────┴───────┘     └───────┴───────┴───────┘
-      bindings = <
-     &kp TAB    &kp Q  &kp W  &kp E     &kp R      &kp T          &kp Y      &kp U     &kp I      &kp O    &kp P      &kp BSPC
-     &kp LCTRL  &kp A  &kp S  &kp D     &kp F      &kp G          &kp H      &kp J     &kp K      &kp L    &kp SEMI   &kp SQT
-     &sk LSHFT  &kp Z  &kp X  &kp C     &kp V      &kp B          &kp N      &kp M     &kp COMMA  &kp DOT  &kp FSLH   &kp ESC
-                              &kp LCMD  &mo LOWER  &kp SPACE      &kp RET  &mo RAISE  &kp LALT
-      >;
-    };
-
-    colemak_dh_layer {
-// ┌───────┬───────┬───────┬───────┬───────┬───────┐     ┌───────┬───────┬───────┬───────┬───────┬───────┐
-// │   TAB │     Q │     W │     F │     P │     B │     │     J │     L │     U │     Y │     ; │  BKSP │
-// ├───────┼───────┼───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┼───────┼───────┤
-// │ LCTRL │     A │     R │     S │     T │     G │     │     M │     N │     E │     I │     O │     ' │
-// ├───────┼───────┼───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┼───────┼───────┤
-// │ LSHFT │     Z │     X │     C │     D │     V │     │     K │     H │     , │     . │     / │   ESC │
-// └───────┴───────┴───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┴───────┴───────┘
-//                         │  LCMD │ LOWER │ SPACE │     │ ENTER │ RAISE │  LALT │
-//                         └───────┴───────┴───────┘     └───────┴───────┴───────┘
-      bindings = <
-     &kp TAB    &kp Q  &kp W  &kp F     &kp P      &kp B          &kp J      &kp L     &kp U      &kp Y    &kp SEMI   &kp BSPC
-     &kp LCTRL  &kp A  &kp R  &kp S     &kp T      &kp G          &kp M      &kp N     &kp E      &kp I    &kp O      &kp SQT
-     &sk LSHFT  &kp Z  &kp X  &kp C     &kp D      &kp V          &kp K      &kp H     &kp COMMA  &kp DOT  &kp FSLH   &kp ESC
-                              &kp LCMD  &mo LOWER  &kp SPACE      &kp RET  &mo RAISE  &kp LALT
-      >;
-    };
 
     default_engram_layer {
 // ┌───────┬───────┬───────┬───────┬───────┬───────┐     ┌───────┬───────┬───────┬───────┬───────┬───────┐
@@ -306,13 +187,13 @@
 // ├───────┼───────┼───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┼───────┼───────┤
 // │   DEL │     G │     X │     J │     K │   - _ │     │   ? ! │     R │     M │     F │     P │  BSPC │
 // └───────┴───────┴───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┴───────┴───────┘
-//                         │   NAV │   SYM │   SPC │     │   ENT │   SYM │       │
+//                         │   SYM │   LWR │   SPC │     │   ENT │   RSE │   SYM │
 //                         └───────┴───────┴───────┘     └───────┴───────┴───────┘
       bindings = <
      &kp ESC  &kp B         &kp Y        &kp O        &kp U         &mm_qt         &mm_dqt    &kp L         &kp D        &kp W        &kp V         &kp Z
      &kp TAB  &hml LCTRL C  &hml LALT I  &hml LCMD E  &hml LSHFT A  &mm_comma      &mm_dot    &hmr RSHFT H  &hmr RCMD T  &hmr RALT S  &hmr RCTRL N  &kp Q
      &kp DEL  &kp G         &kp X        &kp J        &kp K         &kp MINUS      &mm_qmark  &kp R         &kp M        &kp F        &kp P         &kp BSPC
-                                         &mo LOWER    &mo ENG_SYM   &kp SPACE      &kp RET    &mo ENG_SYM   &none
+                                         &mo ENG_SYM  &mo LOWER     &kp SPACE      &kp RET    &mo RAISE     &mo ENG_SYM
       >;
     };
 
@@ -348,7 +229,7 @@
      &kp RU_SHH  &kp RU_C  &kp RU_K  &kp RU_L   &kp RU_B  &kp RU_J      &kp RU_TZ      &kp RU_Y   &kp RU_YA  &kp RU_EE  &kp RU_F   &mm_dc_ru
      &kp RU_CH   &kp RU_Z  &kp RU_V  &kp RU_N   &kp RU_T  &kp RU_D      &kp RU_I       &kp RU_A   &kp RU_O   &kp RU_E   &kp RU_S   &mm_md_ru
      &kp RU_ZH   &kp RU_X  &kp RU_P  &kp RU_R   &kp RU_M  &kp RU_G      &kp RU_MAC_YO  &kp RU_MZ  &kp RU_U   &kp RU_YU  &kp RU_SH  &mm_cs_ru
-                                    &sk LSHFT  &kp DEL   &kp SPACE     &kp RET        &kp BSPC   &mm_eq_ru
+                                     &sk LSHFT  &kp DEL   &kp SPACE     &kp RET        &kp BSPC   &mm_eq_ru
       >;
     };
 
