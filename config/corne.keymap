@@ -12,9 +12,10 @@
 #define DEFAULT    0
 #define ENG_SYM    1
 #define RUSSIAN    2
-#define LOWER      3
-#define RAISE      4
-#define ADJUST     5
+#define RUS_SYM    3
+#define LOWER      4
+#define RAISE      5
+#define ADJUST     6
 
 &sk {
   quick-release;
@@ -26,8 +27,8 @@
       compatible = "zmk,behavior-macro";
       #binding-cells = <0>;
       bindings
-        = <&kp LC(SPACE)>
-        , <&tog RUSSIAN>
+        = <&tog RUSSIAN>
+        , <&kp LC(SPACE)>
         ;
     };
   };
@@ -149,31 +150,6 @@
       bindings = <&kp QMARK>, <&kp EXCL>;
       mods = <(MOD_LSFT|MOD_RSFT)>;
     };
-// russian mod morph
-    mm_dc_ru: ru_dot_comma {
-      compatible = "zmk,behavior-mod-morph";
-      #binding-cells = <0>;
-      bindings = <&kp RU_MAC_DOT>, <&kp RU_MAC_COMMA>;
-      mods = <(MOD_LSFT|MOD_RSFT)>;
-    };
-    mm_cs_ru: ru_colon_semicolon {
-      compatible = "zmk,behavior-mod-morph";
-      #binding-cells = <0>;
-      bindings = <&kp RU_MAC_COLON>, <&kp RU_MAC_SEMICOLON>;
-      mods = <(MOD_LSFT|MOD_RSFT)>;
-    };
-    mm_eq_ru: ru_exclamation_question {
-      compatible = "zmk,behavior-mod-morph";
-      #binding-cells = <0>;
-      bindings = <&kp RU_EXCL>, <&kp RU_MAC_QMARK>;
-      mods = <(MOD_LSFT|MOD_RSFT)>;
-    };
-    mm_md_ru: ru_minus_double_quotes {
-      compatible = "zmk,behavior-mod-morph";
-      #binding-cells = <0>;
-      bindings = <&kp RU_MINUS>, <&kp RU_DQT>;
-      mods = <(MOD_LSFT|MOD_RSFT)>;
-    };
   };
 
   keymap {
@@ -217,37 +193,55 @@
 
     russian_layer {
 // ┌───┬───┬───┬───┬───┬───┐     ┌───┬───┬───┬───┬───┬───┐
-// │ Щ │ Ц │ К │ Л │ Б │ Й │     │ Ъ │ Ы │ Я │ Э │ Ф │. ,│
+// │ Щ │ Ц │ К │ Л │ Б │ Й │     │ Ъ │ Ы │ Я │ Э │ Ф │ESC│
 // ├───┼───┼───┼───┼───┼───┤     ├───┼───┼───┼───┼───┼───┤
-// │ Ч │ З │ В │ Н │ Т │ Д │     │ И │ А │ О │ Е │ С │- "│
+// │ Ч │ З │ В │ Н │ Т │ Д │     │ И │ А │ О │ Е │ С │RSH│
 // ├───┼───┼───┼───┼───┼───┤     ├───┼───┼───┼───┼───┼───┤
-// │ Ж │ Х │ П │ Р │ М │ Г │     │ Ё │ Ь │ У │ Ю │ Ш │: ;│
+// │ Ж │ Х │ П │ Р │ М │ Г │     │ Ё │ Ь │ У │ Ю │ Ш │BSP│
 // └───┴───┴───┼───┼───┼───┤     ├───┼───┼───┼───┴───┴───┘
-//             │LSH│DEL│SPC│     │ENT│BSP│! ?│
+//             │SYM│LWR│SPC│     │ENT│RSE│SYM│
 //             └───┴───┴───┘     └───┴───┴───┘
       bindings = <
-     &kp RU_SHH  &kp RU_C  &kp RU_K  &kp RU_L   &kp RU_B  &kp RU_J      &kp RU_TZ      &kp RU_Y   &kp RU_YA  &kp RU_EE  &kp RU_F   &mm_dc_ru
-     &kp RU_CH   &kp RU_Z  &kp RU_V  &kp RU_N   &kp RU_T  &kp RU_D      &kp RU_I       &kp RU_A   &kp RU_O   &kp RU_E   &kp RU_S   &mm_md_ru
-     &kp RU_ZH   &kp RU_X  &kp RU_P  &kp RU_R   &kp RU_M  &kp RU_G      &kp RU_MAC_YO  &kp RU_MZ  &kp RU_U   &kp RU_YU  &kp RU_SH  &mm_cs_ru
-                                     &sk LSHFT  &kp DEL   &kp SPACE     &kp RET        &kp BSPC   &mm_eq_ru
+     &kp RU_SHH  &kp RU_C  &kp RU_K  &kp RU_L     &kp RU_B    &kp RU_J      &kp RU_TZ      &kp RU_Y   &kp RU_YA  &kp RU_EE  &kp RU_F   &kp ESC
+     &kp RU_CH   &kp RU_Z  &kp RU_V  &kp RU_N     &kp RU_T    &kp RU_D      &kp RU_I       &kp RU_A   &kp RU_O   &kp RU_E   &kp RU_S   &sk RSHFT
+     &kp RU_ZH   &kp RU_X  &kp RU_P  &kp RU_R     &kp RU_M    &kp RU_G      &kp RU_MAC_YO  &kp RU_MZ  &kp RU_U   &kp RU_YU  &kp RU_SH  &kp BSPC
+                                     &mo RUS_SYM  &mo LOWER   &kp SPACE     &kp RET        &mo RAISE  &mo RUS_SYM
+      >;
+    };
+
+    symbol_russian_layer {
+// ┌───────┬───────┬───────┬───────┬───────┬───────┐     ┌───────┬───────┬───────┬───────┬───────┬───────┐
+// │     [ │     1 │     2 │     3 │     4 │     5 │     │     6 │     7 │     8 │     9 │     0 │     ] │
+// ├───────┼───────┼───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┼───────┼───────┤
+// │     { │       │       │     - │     ; │     , │     │     . │     : │     ? │       │       │     } │
+// ├───────┼───────┼───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┼───────┼───────┤
+// │       │       │       │     _ │     ' │     ( │     │     ) │     " │     ! │       │       │       │
+// └───────┴───────┴───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┴───────┴───────┘
+//                         │       │       │       │     │       │       │       │
+//                         └───────┴───────┴───────┘     └───────┴───────┴───────┘
+      bindings = <
+     &kp LBKT  &kp N1  &kp N2  &kp N3     &kp N4         &kp N5         &kp N6    &kp N7     &kp N8     &kp N9  &kp N0  &kp RBKT
+     &kp LBRC  &none   &none   &kp MINUS  &kp SEMICOLON  &kp COMMA      &kp DOT   &kp COLON  &kp QMARK  &none   &none   &kp RBRC
+     &none     &none   &none   &kp UNDER  &kp APOS       &kp LPAR       &kp RPAR  &kp DQT    &kp EXCL   &none   &none   &none
+                               &none      &none          &none          &none     &none      &none
       >;
     };
 
     lower_layer {
 // ┌───────┬───────┬───────┬───────┬───────┬───────┐     ┌───────┬───────┬───────┬───────┬───────┬───────┐
-// │   TAB │     1 │     2 │     3 │     4 │     5 │     │     6 │     7 │     8 │     9 │     0 │  BKSP │
+// │   TAB │     0 │     1 │     2 │     3 │       │     │       │ PG UP │    UP │  HOME │       │  BKSP │
 // ├───────┼───────┼───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┼───────┼───────┤
-// │ LCTRL │       │       │       │       │       │     │   LFT │   DWN │    UP │   RGT │       │       │
+// │ LCTRL │       │     4 │     5 │     6 │       │     │       │   LFT │   DWN │   RGT │       │       │
 // ├───────┼───────┼───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┼───────┼───────┤
-// │ LSHFT │       │       │       │       │       │     │       │ PG DN │ PG UP │       │       │       │
+// │ LSHFT │       │     7 │     8 │     9 │       │     │       │ PG DN │       │   END │       │       │
 // └───────┴───────┴───────┼───────┼───────┼───────┤     ├───────┼───────┼───────┼───────┴───────┴───────┘
 //                         │  LCMD │       │ SPACE │     │ ENTER │       │  RALT │
 //                         └───────┴───────┴───────┘     └───────┴───────┴───────┘
       bindings = <
-     &kp TAB    &kp N1  &kp N2  &kp N3    &kp N4  &kp N5         &kp N6    &kp N7     &kp N8     &kp N9     &kp N0  &kp BSPC
-     &kp LCTRL  &trans  &trans  &trans    &trans  &trans         &kp LEFT  &kp DOWN   &kp UP     &kp RIGHT  &trans  &trans
-     &kp LSHFT  &trans  &trans  &trans    &trans  &trans         &trans    &kp PG_DN  &kp PG_UP  &trans     &trans  &trans
-                                &kp LCMD  &trans  &kp SPACE      &kp RET   &trans     &kp RALT
+     &kp TAB    &kp N0  &kp N1  &kp N2    &kp N3  &none          &none    &kp PG_UP  &kp UP    &kp HOME   &none  &kp BSPC
+     &kp LCTRL  &none   &kp N4  &kp N5    &kp N6  &none          &none    &kp LEFT   &kp DOWN  &kp RIGHT  &none  &none
+     &kp LSHFT  &none   &kp N7  &kp N8    &kp N9  &none          &none    &kp PG_DN  &none     &kp END    &none  &none
+                                &kp LCMD  &trans  &kp SPACE      &kp RET  &trans     &kp RALT
       >;
     };
 
