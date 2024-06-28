@@ -22,17 +22,6 @@
 };
 
 / {
-  macros {
-    switch_to_russian: switch_to_russian {
-      compatible = "zmk,behavior-macro";
-      #binding-cells = <0>;
-      bindings
-        = <&tog RUSSIAN>
-        , <&kp LC(SPACE)>
-        ;
-    };
-  };
-
   combos {
 // ┌───┬───┬───┬───┬───┬───┐  ┌───┬───┬───┬───┬───┬───┐
 // │  0│  1│  2│  3│  4│  5│  │  6│  7│  8│ 9 │ 10│ 11│
@@ -84,7 +73,7 @@
 //             └───┴───┴───┘  └───┴───┴───┘
       timeout-ms = <50>;
       key-positions = <24 35>;
-      bindings = <&switch_to_russian>;
+      bindings = <&tog RUSSIAN>;
     };
   };
 
